@@ -8,3 +8,4 @@ NextJS (T3) app for code collaboration.
 - [Drizzle ORM](https://orm.drizzle.team)
 - [Tailwind CSS](https://tailwindcss.com)
 - [shadcn/ui](https://ui.shadcn.com)
+- [Auth.js](https://authjs.dev)

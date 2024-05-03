@@ -37,6 +37,8 @@ export function CreateRoomForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      description: "",
+      repository: "",
     },
   });
 

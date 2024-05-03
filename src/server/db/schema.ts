@@ -3,7 +3,7 @@ import {
   text,
   primaryKey,
   integer,
-  pgTableCreator,
+  pgTable,
 } from "drizzle-orm/pg-core";
 import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
@@ -14,9 +14,7 @@ const pool = postgres(connectionString, { max: 1 });
 
 export const db = drizzle(pool);
 
-export const createTable = pgTableCreator((name) => `progers_${name}`);
-
-export const users = createTable("user", {
+export const users = pgTable("user", {
   id: text("id")
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
@@ -26,7 +24,7 @@ export const users = createTable("user", {
   image: text("image"),
 });
 
-export const accounts = createTable(
+export const accounts = pgTable(
   "account",
   {
     userId: text("userId")
@@ -50,7 +48,7 @@ export const accounts = createTable(
   }),
 );
 
-export const sessions = createTable("session", {
+export const sessions = pgTable("session", {
   sessionToken: text("sessionToken").primaryKey(),
   userId: text("userId")
     .notNull()
@@ -58,7 +56,7 @@ export const sessions = createTable("session", {
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-export const verificationTokens = createTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: text("identifier").notNull(),

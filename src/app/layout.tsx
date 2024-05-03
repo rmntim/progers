@@ -2,8 +2,7 @@ import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "~/components/theme-provider";
-import { ModeToggle } from "~/components/mode-toggle";
-import { SignIn } from "~/components/sign-in";
+import { TopNav } from "~/components/top-nav";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,18 +14,6 @@ export const metadata = {
   description: "Application created with create-t3-app",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
-
-function TopNav() {
-  return (
-    <nav className="flex items-center justify-between p-4">
-      <h1 className="text-2xl font-bold">progers</h1>
-      <div className="flex items-center gap-4">
-        <ModeToggle />
-        <SignIn />
-      </div>
-    </nav>
-  );
-}
 
 export default function RootLayout({
   children,

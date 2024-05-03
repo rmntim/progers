@@ -1,4 +1,4 @@
-import { signIn } from "~/auth";
+import { signIn } from "~/server/auth";
 import { Button } from "~/components/ui/button";
 
 export function SignIn() {

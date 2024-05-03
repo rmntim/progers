@@ -1,5 +1,5 @@
 import NextAuth from "next-auth";
-import { db } from "./server/db";
+import { db } from "./db";
 import GitHub from "next-auth/providers/github";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 

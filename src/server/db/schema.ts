@@ -76,5 +76,7 @@ export const room = pgTable("room", {
   name: text("name").notNull(),
   description: text("description"),
   language: text("language").notNull(),
-  githubRepo: text("githubRepo"),
+  repository: text("repository"),
 });
+
+export type Room = typeof room.$inferSelect;

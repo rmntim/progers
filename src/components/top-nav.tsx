@@ -11,7 +11,11 @@ export async function TopNav() {
       <h1 className="text-2xl font-bold">progers</h1>
       <div className="flex items-center gap-4">
         <ModeToggle />
-        {session === null ? <SignIn /> : <SignOut />}
+        {session === null ? (
+          <SignIn />
+        ) : (
+          <SignOut username={session.user?.name ?? "unknown"} />
+        )}
       </div>
     </nav>
   );

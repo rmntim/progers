@@ -1,6 +1,8 @@
 import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "~/components/theme-provider";
+import { ModeToggle } from "~/components/mode-toggle";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -13,6 +15,15 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+function TopNav() {
+  return (
+    <nav className="flex items-center justify-between p-4">
+      <h1 className="text-2xl font-bold">Create T3 App</h1>
+      <ModeToggle />
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -20,7 +31,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{children}</body>
+      <body className={`font-sans ${inter.variable}`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TopNav />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

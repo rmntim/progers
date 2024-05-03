@@ -21,18 +21,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select";
+import { createRoom } from "./actions";
+import { useRouter } from "next/navigation";
 
 //! FIXME: Pull language list form backend
 const languages = ["javascript", "typescript", "python", "go", "rust"] as const;
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
-  description: z.string().optional(),
+  description: z.string(),
   language: z.enum(languages),
-  repository: z.string().url().optional(),
+  repository: z.string().url().or(z.literal("")),
 });
 
 export function CreateRoomForm() {
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,8 +46,13 @@ export function CreateRoomForm() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    await createRoom({
+      ...values,
+      description: values.description.length > 0 ? values.description : null,
+      repository: values.repository.length > 0 ? values.repository : null,
+    });
+    router.push("/");
   };
 
   return (
@@ -114,7 +123,7 @@ export function CreateRoomForm() {
           name="repository"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>Repository</FormLabel>
               <FormControl>
                 <Input placeholder="Enter a repository URL" {...field} />
               </FormControl>

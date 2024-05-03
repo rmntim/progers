@@ -8,7 +8,6 @@ import {
 import postgres from "postgres";
 import { drizzle } from "drizzle-orm/postgres-js";
 import type { AdapterAccount } from "next-auth/adapters";
-import { desc } from "drizzle-orm";
 
 const connectionString = "postgres://postgres:postgres@localhost:5432/drizzle";
 const pool = postgres(connectionString, { max: 1 });

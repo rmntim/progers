@@ -27,7 +27,7 @@ import { GITHUB_PREFIX, LANGUAGES } from "~/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
-  description: z.string(),
+  description: z.string().max(150),
   language: z.enum(LANGUAGES),
   repository: z.string().url().startsWith(GITHUB_PREFIX).or(z.literal("")),
 });

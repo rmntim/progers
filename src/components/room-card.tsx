@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Card,
   CardDescription,
@@ -20,12 +21,12 @@ export function RoomCard({ room }: { room: Room }) {
       <CardFooter className="flex justify-between text-sm text-stone-400">
         <p>{room.language}</p>
         {room.repository && (
-          <div className="flex flex-row items-center gap-2">
-            <GithubLogo />
-            <a href={room.repository} target="_blank" rel="noreferrer">
+          <Link href={room.repository} target="_blank" rel="noreferrer">
+            <div className="flex flex-row items-center gap-2 hover:underline">
+              <GithubLogo />
               {room.repository.slice(GITHUB_PREFIX.length)}
-            </a>
-          </div>
+            </div>
+          </Link>
         )}
       </CardFooter>
     </Card>

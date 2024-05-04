@@ -8,16 +8,22 @@ import {
 } from "~/components/ui/card";
 import { GITHUB_PREFIX } from "~/lib/utils";
 import { type Room } from "~/server/db/schema";
+import { Button } from "~/components/ui/button";
 
 export function RoomCard({ room }: { room: Room }) {
   return (
     <Card className="w-full">
-      <CardHeader>
-        <CardTitle>{room.name}</CardTitle>
-        <CardDescription>
-          {room.description ? room.description : "No description"}
-        </CardDescription>
-      </CardHeader>
+      <div className="flex flex-row items-center justify-between pr-6">
+        <CardHeader>
+          <CardTitle>{room.name}</CardTitle>
+          <CardDescription>
+            {room.description ? room.description : "No description"}
+          </CardDescription>
+        </CardHeader>
+        <Button asChild>
+          <Link href={`/rooms/${room.id}`}>Join</Link>
+        </Button>
+      </div>
       <CardFooter className="flex justify-between text-sm text-stone-400">
         <p>{room.language}</p>
         {room.repository && (

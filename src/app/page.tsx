@@ -1,7 +1,6 @@
 import { RoomCard } from "~/components/room-card";
 import { Button } from "~/components/ui/button";
 import { db } from "~/server/db";
-import { SearchBar } from "../components/search-bar";
 import Link from "next/link";
 
 export default async function HomePage() {
@@ -15,7 +14,7 @@ export default async function HomePage() {
           <Link href="/create-room">Create Room</Link>
         </Button>
       </div>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <div className="container grid grid-flow-row grid-cols-1 gap-8 pt-8 md:grid-cols-2 lg:grid-cols-3">
         {rooms.map((room) => (
           <RoomCard key={room.id} room={room} />

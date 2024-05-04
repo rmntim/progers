@@ -10,7 +10,7 @@ import { type Room } from "~/server/db/schema";
 
 export function RoomCard({ room }: { room: Room }) {
   return (
-    <Card className="w-1/2 transition-colors hover:cursor-pointer hover:border-stone-200">
+    <Card className="w-full transition-colors hover:cursor-pointer hover:border-stone-200">
       <CardHeader>
         <CardTitle>{room.name}</CardTitle>
         <CardDescription>

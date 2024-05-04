@@ -14,7 +14,7 @@ export function RoomCard({ room }: { room: Room }) {
       <CardHeader>
         <CardTitle>{room.name}</CardTitle>
         <CardDescription>
-          {room.description || "No description"}
+          {room.description ? room.description : "No description"}
         </CardDescription>
       </CardHeader>
       <CardFooter className="flex justify-between text-sm text-stone-400">

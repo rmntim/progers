@@ -9,7 +9,7 @@ export async function TopNav() {
   const session = await auth();
 
   return (
-    <nav className="flex items-center justify-between p-4">
+    <nav className="flex items-center justify-between border-b p-4">
       <Link href="/" className="text-2xl font-bold">
         progers
       </Link>

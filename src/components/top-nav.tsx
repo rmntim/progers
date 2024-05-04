@@ -12,12 +12,15 @@ export async function TopNav() {
         progers
       </a>
       <div className="flex items-center gap-4">
-        <ModeToggle />
         {session === null ? (
           <SignIn />
         ) : (
-          <SignOut username={session.user?.name ?? "unknown"} />
+          <div className="flex flex-row items-center gap-4">
+            <p>{session.user?.name}</p>
+            <SignOut />
+          </div>
         )}
+        <ModeToggle />
       </div>
     </nav>
   );

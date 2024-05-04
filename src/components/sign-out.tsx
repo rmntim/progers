@@ -1,13 +1,7 @@
 import { signOut } from "~/server/auth";
 import { Button } from "~/components/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
 
-export function SignOut({ username }: { username: string }) {
+export function SignOut() {
   return (
     <form
       action={async () => {
@@ -16,16 +10,7 @@ export function SignOut({ username }: { username: string }) {
       }}
       className="flex flex-col items-center gap-2"
     >
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button type="submit">Sign Out</Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Signed in as {username}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Button type="submit">Sign Out</Button>
     </form>
   );
 }

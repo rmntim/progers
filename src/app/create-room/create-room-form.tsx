@@ -23,15 +23,13 @@ import {
 } from "~/components/ui/select";
 import { createRoom } from "./actions";
 import { useRouter } from "next/navigation";
-
-//! FIXME: Pull language list form backend
-const languages = ["javascript", "typescript", "python", "go", "rust"] as const;
+import { GITHUB_PREFIX, LANGUAGES } from "~/lib/utils";
 
 const formSchema = z.object({
   name: z.string().min(1).max(50),
   description: z.string(),
-  language: z.enum(languages),
-  repository: z.string().url().or(z.literal("")),
+  language: z.enum(LANGUAGES),
+  repository: z.string().url().startsWith(GITHUB_PREFIX).or(z.literal("")),
 });
 
 export function CreateRoomForm() {
@@ -104,7 +102,7 @@ export function CreateRoomForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {languages.map((language) => (
+                  {LANGUAGES.map((language) => (
                     <SelectItem key={language} value={language}>
                       {language}
                     </SelectItem>

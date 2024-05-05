@@ -16,3 +16,11 @@ export async function getRoom(roomId: string) {
   });
   return room;
 }
+
+export async function getRoomsByUserId(userId: string) {
+  noStore();
+  const rooms = await db.query.room.findMany({
+    where: eq(roomTable.userId, userId),
+  });
+  return rooms;
+}

@@ -9,6 +9,17 @@ import {
 import { type Room } from "~/server/db/schema";
 import { Button } from "~/components/ui/button";
 import GithubLink from "~/components/github-link";
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+  AlertDialogAction,
+} from "~/components/ui/alert-dialog";
 
 type RoomCardProps = {
   room: Room;
@@ -32,17 +43,38 @@ export function RoomCard({ deleteable, room }: RoomCardProps) {
       <CardFooter className="flex justify-between text-sm text-stone-400">
         <p>{room.language}</p>
         {room.repository && <GithubLink repository={room.repository} />}
-        {deleteable && (
-          <Button
-            variant="destructiveOutline"
-            size="icon"
-            className="border-none"
-          >
-            <TrashIcon />
-          </Button>
-        )}
+        {deleteable && <DeleteButton />}
       </CardFooter>
     </Card>
+  );
+}
+
+function DeleteButton() {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button
+          variant="destructiveOutline"
+          size="icon"
+          className="border-none"
+        >
+          <TrashIcon />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This action cannot be undone. This will permanently delete this
+            room.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction>Delete</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
 

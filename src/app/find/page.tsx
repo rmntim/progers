@@ -1,8 +1,8 @@
 import { RoomCard } from "~/components/room-card";
-import { db } from "~/server/db";
+import { getRooms } from "~/server/data-access/room";
 
 export default async function FindRooms() {
-  const rooms = await db.query.room.findMany();
+  const rooms = await getRooms();
 
   return (
     <main className="min-w-screen flex min-h-screen flex-col items-center gap-4 p-4">

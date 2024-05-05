@@ -31,9 +31,14 @@ export default async function Room({ params }: RoomProps) {
           INFO PANEL
         </div>
       </div>
-      <div className="flex flex-col items-start justify-center gap-4 p-4">
-        <h2 className="text-2xl font-bold">Description</h2>
-        <p>{room.description ? room.description : "No description"}</p>
+      <div className="flex flex-row items-center justify-between p-4">
+        <div className="flex flex-col items-start justify-center gap-4">
+          <h2 className="text-2xl font-bold">Description</h2>
+          <p>{room.description ? room.description : "No description"}</p>
+        </div>
+        <div>
+          <h2 className="text-stone-400">{room.language}</h2>
+        </div>
       </div>
     </main>
   );

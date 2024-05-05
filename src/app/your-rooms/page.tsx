@@ -11,7 +11,7 @@ export default async function YourRooms() {
       <h1 className="pt-4 text-3xl font-bold">Your Rooms</h1>
       <div className="container grid grid-flow-row grid-cols-1 gap-8 pt-8 md:grid-cols-2 lg:grid-cols-3">
         {rooms.map((room) => (
-          <RoomCard key={room.id} room={room} />
+          <RoomCard key={room.id} room={room} deleteable />
         ))}
       </div>
     </main>

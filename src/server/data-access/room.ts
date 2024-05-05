@@ -20,3 +20,7 @@ export async function getRoomsByUserId(userId: string) {
   });
   return rooms;
 }
+
+export async function deleteRoom(roomId: string) {
+  await db.delete(room).where(eq(room.id, roomId));
+}

@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import {
   Card,
@@ -20,6 +21,7 @@ import {
   AlertDialogTrigger,
   AlertDialogAction,
 } from "~/components/ui/alert-dialog";
+import { deleteRoomAction } from "~/app/your-rooms/actions";
 
 type RoomCardProps = {
   room: Room;
@@ -43,13 +45,13 @@ export function RoomCard({ deleteable, room }: RoomCardProps) {
       <CardFooter className="flex justify-between text-sm text-stone-400">
         <p>{room.language}</p>
         {room.repository && <GithubLink repository={room.repository} />}
-        {deleteable && <DeleteButton />}
+        {deleteable && <DeleteButton roomId={room.id} />}
       </CardFooter>
     </Card>
   );
 }
 
-function DeleteButton() {
+function DeleteButton({ roomId }: { roomId: string }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -71,7 +73,11 @@ function DeleteButton() {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Delete</AlertDialogAction>
+          <AlertDialogAction
+            onClick={async () => await deleteRoomAction(roomId)}
+          >
+            Delete
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

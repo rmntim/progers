@@ -29,29 +29,37 @@ export default function VideoPlayer({ room }: { room: Room }) {
     if (!session.data) {
       return;
     }
-    const userId = session.data.user.id;
-
     const client = new StreamVideoClient({
       apiKey,
       user: {
-        id: userId,
+        id: session.data.user.id,
         name: session.data.user.name ?? "Unknown",
         image: session.data.user.image ?? undefined,
       },
       tokenProvider: () => generateToken(),
     });
     setClient(client);
+    return () => {
+      client.disconnectUser().catch(console.error);
+      setClient(null);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!client) {
+      return;
+    }
     const call = client.call("default", room.id);
-    void call.join({ create: true });
+    call.join({ create: true }).catch(console.error);
     setCall(call);
 
     return () => {
-      call
-        .leave()
-        .then(() => client.disconnectUser())
-        .catch(console.error);
+      setCall(null);
+      call.leave().catch(console.error);
     };
-  }, [session, room.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [client]);
 
   return (
     client &&

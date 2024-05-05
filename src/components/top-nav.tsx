@@ -4,6 +4,7 @@ import { auth } from "~/server/auth";
 import { SignOut } from "~/components/sign-out";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 
 export async function TopNav() {
   const session = await auth();
@@ -18,7 +19,15 @@ export async function TopNav() {
           <SignIn />
         ) : (
           <div className="flex flex-row items-center gap-4">
-            <p>{session.user?.name}</p>
+            <Link href="/your-rooms">
+              <Avatar>
+                <AvatarImage
+                  src={session.user.image ?? undefined}
+                  alt={session.user.name ?? "avatar"}
+                />
+                <AvatarFallback>{session.user.name ?? "avatar"}</AvatarFallback>
+              </Avatar>
+            </Link>
             <SignOut />
             <Button variant="outline" size="icon" asChild>
               <Link href="/create-room">

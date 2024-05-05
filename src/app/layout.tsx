@@ -6,6 +6,7 @@ import { TopNav } from "~/components/top-nav";
 import { Footer } from "~/components/footer";
 import NextTopLoader from "nextjs-toploader";
 import { useTheme } from "next-themes";
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -26,17 +27,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NextTopLoader color="#a8a29e" showSpinner={false} />
-          <TopNav />
-          {children}
-          <Footer />
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NextTopLoader color="#a8a29e" showSpinner={false} />
+            <TopNav />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import GithubLink from "~/components/github-link";
+import VideoPlayer from "~/components/video-player";
 import { getRoom } from "~/server/data-access/room";
 
 type RoomProps = {
@@ -17,9 +18,9 @@ export default async function Room({ params }: RoomProps) {
 
   return (
     <main className="min-w-screen flex min-h-screen flex-col gap-4 p-4">
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-3 flex items-center justify-center rounded-md border">
-          VIDEO PLAYER
+      <div className="grid max-h-max grid-cols-4 gap-4">
+        <div className="col-span-3 flex h-max flex-col items-center justify-center rounded-md border p-4">
+          <VideoPlayer room={room} />
         </div>
         <div className="col-span-1 flex flex-col items-start justify-between gap-4 rounded-md border p-8">
           <div>

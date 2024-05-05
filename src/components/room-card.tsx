@@ -33,7 +33,11 @@ export function RoomCard({ deleteable, room }: RoomCardProps) {
         <p>{room.language}</p>
         {room.repository && <GithubLink repository={room.repository} />}
         {deleteable && (
-          <Button variant="outline" size="icon" className="border-none">
+          <Button
+            variant="destructiveOutline"
+            size="icon"
+            className="border-none"
+          >
             <TrashIcon />
           </Button>
         )}

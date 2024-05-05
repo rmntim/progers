@@ -7,11 +7,10 @@ import { Button } from "~/components/ui/button";
 
 export async function TopNav() {
   const session = await auth();
-  const logoLink = session === null ? "/" : "/find";
 
   return (
     <nav className="flex items-center justify-between border-b p-4">
-      <Link href={logoLink} className="text-2xl font-bold">
+      <Link href="/" className="text-2xl font-bold">
         progers
       </Link>
       <div className="flex items-center gap-4">

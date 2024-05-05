@@ -50,7 +50,7 @@ export function CreateRoomForm() {
       description: values.description.length > 0 ? values.description : null,
       repository: values.repository.length > 0 ? values.repository : null,
     });
-    router.push("/");
+    router.push("/find");
   };
 
   return (

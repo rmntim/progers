@@ -1,6 +1,7 @@
 import GithubLink from "~/components/github-link";
 import VideoPlayer from "~/components/video-player";
 import { getRoom } from "~/server/data-access/room";
+import { unstable_noStore as noStore } from "next/cache";
 
 type RoomProps = {
   params: {
@@ -9,6 +10,7 @@ type RoomProps = {
 };
 
 export default async function Room({ params }: RoomProps) {
+  noStore();
   const { roomId } = params;
   const room = await getRoom(roomId);
 

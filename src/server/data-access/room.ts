@@ -1,16 +1,13 @@
 import { eq } from "drizzle-orm";
-import { unstable_noStore as noStore } from "next/cache";
 import { db } from "~/server/db";
-import { room as roomTable } from "~/server/db/schema";
+import { room, room as roomTable } from "~/server/db/schema";
 
 export async function getRooms() {
-  noStore();
   const rooms = await db.query.room.findMany();
   return rooms;
 }
 
 export async function getRoom(roomId: string) {
-  noStore();
   const room = await db.query.room.findFirst({
     where: eq(roomTable.id, roomId),
   });
@@ -18,7 +15,6 @@ export async function getRoom(roomId: string) {
 }
 
 export async function getRoomsByUserId(userId: string) {
-  noStore();
   const rooms = await db.query.room.findMany({
     where: eq(roomTable.userId, userId),
   });

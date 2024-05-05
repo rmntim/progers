@@ -1,8 +1,10 @@
 import { RoomCard } from "~/components/room-card";
 import { auth } from "~/server/auth";
 import { getRoomsByUserId } from "~/server/data-access/room";
+import { unstable_noStore as noStore } from "next/cache";
 
 export default async function YourRooms() {
+  noStore();
   const session = await auth();
   const rooms = await getRoomsByUserId(session?.user.id ?? "");
 
